@@ -20,37 +20,12 @@ public class OpenAIServiceImpl implements OpenAIService {
 
     @Override
     public byte[] getSpeech(Question question) {
-        OpenAiAudioSpeechOptions speechOptions = OpenAiAudioSpeechOptions.builder()
-                .voice(OpenAiAudioApi.SpeechRequest.Voice.ALLOY)
-                .speed(1.0f)
-                .responseFormat(OpenAiAudioApi.SpeechRequest.AudioResponseFormat.MP3)
-                .model(OpenAiAudioApi.TtsModel.TTS_1.value)
-                .build();
+        OpenAiAudioSpeechOptions speechOptions = OpenAiAudioSpeechOptions.builder().voice(OpenAiAudioApi.SpeechRequest.Voice.ALLOY).speed(1.0f).responseFormat(OpenAiAudioApi.SpeechRequest.AudioResponseFormat.MP3).model(OpenAiAudioApi.TtsModel.TTS_1.value).build();
 
-        SpeechPrompt speechPrompt = new SpeechPrompt(question.question(),
-                speechOptions);
+        SpeechPrompt speechPrompt = new SpeechPrompt(question.question(), speechOptions);
 
         SpeechResponse response = speechModel.call(speechPrompt);
 
         return response.getResult().getOutput();
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

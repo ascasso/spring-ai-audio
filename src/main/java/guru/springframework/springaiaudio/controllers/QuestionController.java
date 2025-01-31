@@ -17,7 +17,7 @@ public class QuestionController {
 
     private final OpenAIService openAIService;
 
-    @PostMapping(value ="/talk", produces = "audio/mpeg")
+    @PostMapping(value = "/talk", produces = "audio/mpeg")
     public byte[] talkTalk(@RequestBody Question question) {
         return openAIService.getSpeech(question);
     }
